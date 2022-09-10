@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
+import { NotifyService } from './notify.service';
 import { IProdutoCarrinho } from './produtos/produtos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrinhoService {
+  
   itens: IProdutoCarrinho[] = [];
-
   constructor() { }
 
   obterCarrinho(){
-    return JSON.parse(localStorage.getItem("carrinho") || "");
+    this.itens = JSON.parse(localStorage.getItem("carrinho") || "[]");
+    return this.itens
   }
 
   addCarrinho(produto : IProdutoCarrinho){
@@ -20,6 +22,11 @@ export class CarrinhoService {
 
   limparCarrinho(){
     this.itens = [];
-    localStorage.clear;
+    localStorage.clear();
+  }
+
+  removeProdCarrinho(produto: number){
+    this.itens = this.itens.filter(item => item.id !== produto);
+    localStorage.setItem("carrinho", JSON.stringify(this.itens));
   }
 }

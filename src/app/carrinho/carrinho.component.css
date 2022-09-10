@@ -1,7 +1,7 @@
 .cart-title {
     font-size: 44px;
     color: var(--gray);
-    font-weight: 700;
+    
     padding: 8px 0;
 }
 
@@ -59,4 +59,20 @@ input {
 
 .buy-button:hover {
     filter: brightness(0.9);
+}
+
+.empty-cart{
+    /*font-weight: 400;*/
+    padding: 2rem;
+    /*color:rgb(122, 122, 122);*/
+    font-size: 3rem;
+    text-align: center;
+}
+
+.container{
+    padding: 5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    font-size: 200px;
 }

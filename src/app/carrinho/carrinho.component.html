@@ -1,20 +1,27 @@
 
 <h2 class="cart-title">Carrinho</h2>
 
-<div>
+<div *ngIf="itensCarrinho.length > 0; else carrinhoVazio">
     <ul>
-        <li>
-            <img src="https://via.placeholder.com/1000x1000?text=">
-            <p>Desc Prod</p>
-            <p>Preço</p>
+        <li *ngFor="let itemCarrinho of itensCarrinho">
+            <img [src]="itemCarrinho.imagem">
+            <p> {{ itemCarrinho.descricao }} </p>
+            <p>Valor: {{ itemCarrinho.preco | currency: "BRL"  }} </p>
             <label>
                 Quantidade:
-                <input type="number">
+                <input type="number" [(ngModel)] = "itemCarrinho.qtd" (change)="totalCalc()">
             </label>
-            <button class="remove-button"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="remove-button" (click)="removeProdCarrinho(itemCarrinho.id)"><i class="fa-solid fa-trash-can"></i></button>
         </li>
     </ul>
 
-    <h2 class="cart-total">Total: </h2>
-    <button class="buy-button">Comprar</button>
+    <h2 class="cart-total">Total: {{ total | currency: "BRL" }} </h2>
+    <button class="buy-button" (click)="comprar()">Comprar</button>
 </div>
+
+<ng-template #carrinhoVazio>
+    <div class="container">
+        <i class="fa-solid fa-cart-shopping"></i>    
+        <h3 class="empty-cart"> Carrinho vazio!!!</h3>
+    </div>
+</ng-template>

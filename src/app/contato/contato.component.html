@@ -1,0 +1,23 @@
+
+<h2 class="contact_title">Entre em contato</h2>
+
+<section class="contact_container">
+    <form class="contact-form" [formGroup]="formCont">
+        
+        <input 
+            type="text" 
+            placeholder="nome" 
+            formControlName="nome"
+            [class.valid]="formCont.controls['nome'].valid"
+            [class.invalid]="formCont.controls['nome'].invalid &&
+            (formCont.controls['nome'].touched || formCont.controls['nome'].dirty)"
+        >
+
+        <input type="text" placeholder="Assunto">
+        <input type="tel" placeholder="Telefone">
+        <input type="email" placeholder="Email">
+        <textarea maxlength="100" placeholder="Descreva o ocorrido..."></textarea>
+        <button type="button" (click)="enviar()">Enviar</button>
+    </form>
+    
+</section>

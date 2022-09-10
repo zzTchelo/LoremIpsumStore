@@ -1,9 +1,11 @@
 
-<h2 class="contact_title">Entre em contato</h2>
+<h2 class="contact__title">Entre em contato</h2>
 
 <section class="contact_container">
     <form class="contact-form" [formGroup]="formCont">
-        
+
+
+        <!-- CAMPO NOME -->
         <input 
             type="text" 
             placeholder="nome" 
@@ -12,12 +14,96 @@
             [class.invalid]="formCont.controls['nome'].invalid &&
             (formCont.controls['nome'].touched || formCont.controls['nome'].dirty)"
         >
+        <div *ngIf="formCont.controls['nome'].invalid &&
+        (formCont.controls['nome'].touched || formCont.controls['nome'].dirty)">
+            <small class="error-message" *ngIf="formCont.controls['nome'].hasError('minlength')">
+                Tamanho mínimo de caracteres: 3.
+            </small>
+            <small class="error-message" *ngIf="formCont.controls['nome'].hasError('required')">
+                Campo obrigatório!
+            </small>
+        </div>
 
-        <input type="text" placeholder="Assunto">
-        <input type="tel" placeholder="Telefone">
-        <input type="email" placeholder="Email">
-        <textarea maxlength="100" placeholder="Descreva o ocorrido..."></textarea>
-        <button type="button" (click)="enviar()">Enviar</button>
+        <!-- CAMPO ASSUNTO -->
+        <input 
+        type="text" 
+        placeholder="assunto"
+        formControlName="assunto"
+        [class.valid]="formCont.controls['assunto'].valid"
+        [class.invalid]="formCont.controls['assunto'].invalid &&
+        (formCont.controls['assunto'].touched || formCont.controls['assunto'].dirty)"
+        >
+        <div *ngIf="formCont.controls['assunto'].invalid &&
+        (formCont.controls['assunto'].touched || formCont.controls['assunto'].dirty)">
+            <small class="error-message" *ngIf="formCont.controls['assunto'].hasError('minlength')">
+                Tamanho mínimo de caracteres: 10.
+            </small>
+            <small class="error-message" *ngIf="formCont.controls['assunto'].hasError('required')">
+                Campo obrigatório!
+            </small>
+        </div> 
+
+        <!-- CAMPO TELEFONE -->
+        <input 
+        type="tel" 
+        placeholder="Telefone"
+        formControlName="telefone"
+        mask = "(00) 0 0000-0000"
+        [class.valid]="formCont.controls['telefone'].valid"
+        [class.invalid]="formCont.controls['telefone'].invalid &&
+        (formCont.controls['telefone'].touched || formCont.controls['telefone'].dirty)"
+        >
+        <div *ngIf="formCont.controls['telefone'].invalid &&
+        (formCont.controls['telefone'].touched || formCont.controls['telefone'].dirty)">
+            <small class="error-message" *ngIf="formCont.controls['telefone'].hasError('minlength')">
+                Telefone inválido.
+            </small>
+            <small class="error-message" *ngIf="formCont.controls['telefone'].hasError('required')">
+                Campo obrigatório!
+            </small>
+        </div>
+
+        <!-- CAMPO EMAIL -->
+        <input 
+        type="email" 
+        placeholder="Email"
+        formControlName="email"
+        [class.valid]="formCont.controls['email'].valid"
+        [class.invalid]="formCont.controls['email'].invalid &&
+        (formCont.controls['email'].touched || formCont.controls['email'].dirty)"
+        >
+        <div *ngIf="formCont.controls['email'].invalid &&
+        (formCont.controls['email'].touched || formCont.controls['email'].dirty)">
+            <small class="error-message" *ngIf="formCont.controls['email'].hasError('minlength')">
+                Email inválido.
+            </small>
+            <small class="error-message" *ngIf="formCont.controls['email'].hasError('required')">
+                Campo obrigatório!
+            </small>
+        </div>
+
+        <!-- CAMPO DESCRICAO -->
+        <textarea 
+        maxlength="100" 
+        placeholder="Descreva o ocorrido..."
+        formControlName="mensagem"
+        [class.valid]="formCont.controls['mensagem'].valid"
+        [class.invalid]="formCont.controls['mensagem'].invalid &&
+        (formCont.controls['mensagem'].touched || formCont.controls['mensagem'].dirty)"
+        ></textarea>
+        <div *ngIf="formCont.controls['mensagem'].invalid &&
+        (formCont.controls['mensagem'].touched || formCont.controls['mensagem'].dirty)">
+            <small class="error-message" *ngIf="formCont.controls['mensagem'].hasError('minlength')">
+                Tamanho mínimo de caracteres: 15.
+            </small>
+            <small class="error-message" *ngIf="formCont.controls['mensagem'].hasError('required')">
+                Campo obrigatório!
+            </small>
+        </div>
+
+        <button 
+            type="button" 
+            (click)="enviar()"
+            [disabled]="formCont.invalid">Enviar</button>
     </form>
-    
 </section>

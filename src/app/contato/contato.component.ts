@@ -41,6 +41,7 @@ export class ContatoComponent implements OnInit {
   }
 
   enviar(){
+    this.formCont.reset();
     this.notify.notifyMsg("Solicitação enviada com sucesso");
 }
 
